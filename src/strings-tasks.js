@@ -167,7 +167,7 @@ function removeFirstOccurrences(str, value) {
  */
 function removeLastOccurrences(str, value) {
   const index = str.lastIndexOf(value);
-  return index > -1
+  return index === -1
     ? str
     : str.slice(0, index) + str.slice(index + value.length);
 }
@@ -186,9 +186,10 @@ function removeLastOccurrences(str, value) {
  */
 function sumOfCodes(str) {
   let result = 0;
-  const end = str.length;
-  for (let i = 0; i < end; i += 1) {
-    result += Number(str.charCodeAt(i));
+  if (typeof str === 'string') {
+    for (let i = 0; i < str.length; i += 1) {
+      result += str.charCodeAt(i);
+    }
   }
   return result;
 }
@@ -345,8 +346,17 @@ function isPalindrome(str) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const arr = sentence.split(' ');
+  let temp = 0;
+  let num = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i].length > temp) {
+      temp = arr[i].length;
+      num = i;
+    }
+  }
+  return arr[num];
 }
 
 /**
