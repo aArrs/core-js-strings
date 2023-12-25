@@ -166,14 +166,10 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  const reverseStr = str.split('').reverse().join('');
-  const index = reverseStr.indexOf(value.split('').reverse().join(''));
+  const index = str.lastIndexOf(value);
   return index > -1
-    ? (reverseStr.slice(0, index) + reverseStr.slice(index + value.length))
-        .split('')
-        .reverse()
-        .join('')
-    : str;
+    ? str
+    : str.slice(0, index) + str.slice(index + value.length);
 }
 
 /**
@@ -507,7 +503,6 @@ function encodeToRot13(str) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  const arr = [value];
   let id = 0;
   const cards = [
     'A♣',
@@ -565,7 +560,7 @@ function getCardId(value) {
   ];
 
   for (let j = 0; j < cards.length; j += 1) {
-    if (arr === cards[j]) id += Number(cards[j]);
+    if (value === cards[j]) id += j;
   }
 
   return id;
