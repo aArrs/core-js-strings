@@ -20,7 +20,8 @@
  *   getStringLength(undefined) => 0
  */
 function getStringLength(value) {
-  return value.length();
+  if (String.isString(value)) return value.length();
+  return 0;
 }
 
 /**
@@ -68,8 +69,8 @@ function concatenateStrings(value1, value2) {
  *   getFirstChar('cat') => 'c'
  *   getFirstChar('') => ''
  */
-function getFirstChar(/* value */) {
-  throw new Error('Not implemented');
+function getFirstChar(value) {
+  return value.charAt();
 }
 
 /**
